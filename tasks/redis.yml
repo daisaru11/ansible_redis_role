@@ -1,0 +1,12 @@
+---
+- name: be sure apt cache is updated
+  apt: update_cache=yes cache_valid_time=3600
+  tags: redis
+
+- name: be sure redis-server is installed
+  apt: pkg=redis-server state=present
+  tags: redis
+
+- name: be sure redis-server is running and enabled
+  service: name=redis-server state=started enabled=yes
+  tags: redis

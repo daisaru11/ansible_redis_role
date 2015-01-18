@@ -1,0 +1,16 @@
+---
+- name: be sure redis logdir is exists
+  file:
+    path: /var/log/redis
+    group: redis
+    owner: redis
+    state: directory
+    mode: 0755
+  tags: redis
+
+- name: be sure redis-server is configured
+  action: template src=redis/redis.conf dest=/etc/redis/redis.conf
+  notify:
+  - restart redis-server
+  tags: redis
+

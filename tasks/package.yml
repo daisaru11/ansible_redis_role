@@ -1,0 +1,12 @@
+---
+
+- name: be sure dotdeb wheezy repositories ard added
+  apt_repository: repo="{{ item }}"
+  with_items:
+    - deb http://packages.dotdeb.org wheezy all
+    - deb-src http://packages.dotdeb.org wheezy all
+  tags: redis
+
+- name: be sure dotdeb key is installed
+  apt_key: url=http://www.dotdeb.org/dotdeb.gpg
+  tags: redis
